@@ -1,10 +1,43 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --color-cyan-400: #22d3ee;
-  --color-cyan-500: #06b6d4;
+  
+  --color-neon-cyan: #06b6d4;
+  --color-neon-blue: #3b82f6;
+  --color-neon-purple: #a855f7;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-spotlight: spotlight 2s ease .75s 1 forwards;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes spotlight {
+  0% { opacity: 0; transform: translate(-72%, -62%) scale(0.5); }
+  100% { opacity: 1; transform: translate(-50%,-40%) scale(1); }
+}
+
+/* Luxury Utilities */
+.glass-panel {
+  @apply bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-xl;
+}
+
+.neon-border {
+  @apply border border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.3)];
+}
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+}
+
+.spotlight-cursor {
+  background: radial-gradient(600px circle at var(--x) var(--y), rgba(6, 182, 212, 0.15), transparent 40%);
 }
 
 @layer base {
@@ -13,11 +46,20 @@
   }
   body {
     font-family: var(--font-sans);
-    @apply bg-slate-950 text-slate-50 antialiased;
+    @apply bg-slate-950 text-slate-200 antialiased;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.15), transparent 40%),
+      radial-gradient(circle at 0% 50%, rgba(59, 130, 246, 0.1), transparent 40%),
+      radial-gradient(circle at 100% 50%, rgba(168, 85, 247, 0.1), transparent 40%);
+    background-attachment: fixed;
   }
   code, pre {
     font-family: var(--font-mono);
   }
+}
+
+::selection {
+  @apply bg-cyan-500/30 text-cyan-200;
 }
 
 /* Custom Scrollbar */

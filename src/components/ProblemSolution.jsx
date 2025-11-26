@@ -1,120 +1,137 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { XCircle, CheckCircle, AlertTriangle, Zap, Shield, Clock } from 'lucide-react';
+import { AlertTriangle, XCircle, Clock, CheckCircle, ShieldCheck, Zap, ArrowRight } from 'lucide-react';
 
 const ProblemSolution = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   const problems = [
-    "JavaScript errors breaking the app",
-    "React components not updating",
-    "Next.js routing/server errors",
-    "CSS not responsive / Layout breaks",
-    "Tailwind classes not applying",
-    "Browser compatibility bugs"
+    {
+      icon: AlertTriangle,
+      title: "Technical Debt",
+      desc: "Spaghetti code and legacy systems slowing down new features.",
+      color: "text-red-500"
+    },
+    {
+      icon: XCircle,
+      title: "Security Vulnerabilities",
+      desc: "Exposed endpoints and unpatched dependencies risking data.",
+      color: "text-orange-500"
+    },
+    {
+      icon: Clock,
+      title: "Slow Performance",
+      desc: "High latency and poor core web vitals killing conversion.",
+      color: "text-yellow-500"
+    }
   ];
 
   const solutions = [
-    { icon: Clock, text: "Quick delivery (1 hour for simple fixes)" },
-    { icon: Shield, text: "Clean, well-structured code" },
-    { icon: Zap, text: "Performance optimization included" },
-    { icon: CheckCircle, text: "Detailed bug reports + explanations" },
+    {
+      icon: Zap,
+      title: "Modern Architecture",
+      desc: "Clean, modular codebases built for speed and scalability.",
+      color: "text-cyan-400"
+    },
+    {
+      icon: ShieldCheck,
+      title: "Enterprise Security",
+      desc: "ISO-compliant audits and automated penetration testing.",
+      color: "text-green-400"
+    },
+    {
+      icon: CheckCircle,
+      title: "Performance First",
+      desc: "Sub-100ms load times and optimized rendering pipelines.",
+      color: "text-blue-400"
+    }
   ];
 
   return (
-    <section className="py-20 bg-slate-900 relative overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          
-          {/* Problem Side */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-medium mb-6">
-              <AlertTriangle className="w-4 h-4" />
-              Stuck on a bug?
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Don't Let <span className="text-red-400">Broken Code</span> Cost You Users
-            </h2>
-            <p className="text-slate-400 mb-8 text-lg">
-              Every minute your app is buggy, you lose credibility. I fix the issues that drive developers crazy.
-            </p>
+    <section className="py-24 bg-slate-950 relative overflow-hidden">
+      {/* Background Split */}
+      <div className="absolute inset-0 flex">
+        <div className="w-1/2 bg-slate-950/50 border-r border-slate-900/50"></div>
+        <div className="w-1/2 bg-slate-900/20"></div>
+      </div>
 
-            <div className="space-y-4">
-              {problems.map((problem, index) => (
-                <div key={index} className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-lg border border-slate-800 hover:border-red-500/30 transition-colors">
-                  <XCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
-                  <span className="text-slate-300">{problem}</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Stop Patching. <span className="text-cyan-400">Start Scaling.</span>
+          </h2>
+          <p className="text-slate-400 max-w-2xl mx-auto">
+            Move from chaos to clarity with our engineering-first approach.
+          </p>
+        </div>
 
-          {/* Solution Side */}
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 blur-3xl rounded-full"></div>
-            
-            <div className="relative bg-slate-800 rounded-2xl p-8 border border-slate-700 shadow-2xl">
-              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <span className="p-2 bg-green-500/20 rounded-lg text-green-400">
-                  <CheckCircle className="w-6 h-6" />
-                </span>
-                The Expert Solution
-              </h3>
-
-              <div className="space-y-6">
-                {solutions.map((item, index) => (
-                  <div key={index} className="flex items-start gap-4">
-                    <div className="p-2 bg-slate-700/50 rounded-lg text-cyan-400">
-                      <item.icon className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-medium text-lg">{item.text}</h4>
-                      <p className="text-slate-400 text-sm mt-1">Guaranteed fix or money back.</p>
-                    </div>
+        <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+          {/* Left: The Problem (Chaos) */}
+          <div className="space-y-6">
+            <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 pl-2">The Old Way</div>
+            {problems.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={`p-6 rounded-xl border border-slate-800/50 bg-slate-900/30 transition-all duration-300 cursor-default ${
+                  hoveredIndex === index ? 'opacity-50 blur-[1px]' : 'opacity-100'
+                }`}
+              >
+                <div className="flex items-start gap-4">
+                  <div className={`p-3 rounded-lg bg-slate-950 border border-slate-800 ${item.color}`}>
+                    <item.icon className="w-6 h-6" />
                   </div>
-                ))}
-              </div>
-
-              <div className="mt-8 pt-8 border-t border-slate-700">
-                <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-slate-400 text-sm">Fiverr Rating</div>
-                    <div className="text-2xl font-bold text-white flex items-center gap-2">
-                      5.0 <div className="flex text-yellow-400"><StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarIcon /></div>
-                    </div>
+                    <h3 className={`text-lg font-bold mb-1 ${item.color} font-mono`}>{item.title}</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
                   </div>
-                  <a 
-                    href="https://www.fiverr.com/meherab788/find-and-fix-javascript-errors-fix-code-and-fix-react-and-next-bugs"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold rounded-lg transition-colors"
-                  >
-                    Hire Me
-                  </a>
                 </div>
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            ))}
+          </div>
 
+          {/* Center Connector (Desktop) */}
+          <div className="hidden md:flex flex-col items-center justify-center gap-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+            <div className="w-12 h-12 rounded-full bg-slate-900 border border-cyan-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+              <ArrowRight className="w-5 h-5 text-cyan-400" />
+            </div>
+          </div>
+
+          {/* Right: The Solution (Order) */}
+          <div className="space-y-6">
+            <div className="text-xs font-bold text-cyan-500 uppercase tracking-widest mb-4 pl-2 text-right">The FixFlow Way</div>
+            {solutions.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 + 0.2 }}
+                className={`p-6 rounded-xl border transition-all duration-500 ${
+                  hoveredIndex === index 
+                    ? 'bg-slate-900 border-cyan-500 shadow-[0_0_30px_rgba(6,182,212,0.15)] scale-105 z-10' 
+                    : 'bg-slate-900/50 border-slate-800'
+                }`}
+              >
+                <div className="flex items-start gap-4">
+                  <div className={`p-3 rounded-lg bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 ${item.color}`}>
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white mb-1">{item.title}</h3>
+                    <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 };
-
-const StarIcon = () => (
-  <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
-    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-  </svg>
-);
 
 export default ProblemSolution;

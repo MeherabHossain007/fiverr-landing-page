@@ -5,24 +5,24 @@ import { ChevronDown, HelpCircle } from 'lucide-react';
 const FAQ = () => {
   const faqs = [
     {
-      question: "How fast can you fix my bug?",
-      answer: "For most standard bugs, I deliver within 1-2 hours. Complex issues might take a bit longer, but I always prioritize speed without compromising quality."
+      question: "How fast can you fix our bugs?",
+      answer: "For critical issues, our rapid response team can deploy fixes within 1-2 hours. For larger maintenance tasks, we provide a clear timeline before starting."
     },
     {
       question: "What access do you need?",
-      answer: "Usually, I need access to your GitHub repository or a zip file of your code. If it's a live site issue, I might need temporary access to your hosting or CMS."
+      answer: "We typically require access to your version control (GitHub/GitLab) and hosting environment. We can sign NDAs before access is granted."
     },
     {
-      question: "Do you fix backend issues?",
-      answer: "I specialize in frontend (React, Next.js, JS, CSS), but I can handle Next.js server actions and API integration issues. For deep backend logic (Node.js, DBs), please message me first."
+      question: "Do you handle full-stack development?",
+      answer: "Yes, we have a dedicated team for both frontend (React, Next.js) and backend (Node.js, Databases) development. We can handle end-to-end project delivery."
     },
     {
-      question: "Are revisions included?",
-      answer: "Yes! I offer unlimited revisions for the Standard and Premium packages to ensure you are 100% satisfied with the fix."
+      question: "How do your retainer plans work?",
+      answer: "Our monthly retainers include a set number of development hours, priority support, and weekly health checks. Unused hours can roll over to the next month."
     },
     {
-      question: "Is the work secure?",
-      answer: "Absolutely. I treat your code with strict confidentiality. I don't share your code with anyone, and I delete it from my local machine once the order is complete."
+      question: "Is our code secure with you?",
+      answer: "Security is our top priority. We follow ISO-compliant security protocols, use encrypted communication, and strictly adhere to NDA terms."
     }
   ];
 
